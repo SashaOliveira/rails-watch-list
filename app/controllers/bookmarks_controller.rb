@@ -1,5 +1,15 @@
 class BookmarksController < ApplicationController
   def index
-    @movies = Movies.all
+    @bookmarks = Bookmark.all
   end
+
+  def new
+    @bookmark = Bookmark.new
+  end
+
+  def create
+    @bookmark = Bookmark.new
+    @bookmark.save
+  end
+
 end
