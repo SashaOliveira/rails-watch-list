@@ -1,11 +1,20 @@
-<h1>Hello!</h1>
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.valleycentral.com/wp-content/uploads/sites/39/2022/09/movie-theater-popcorn.jpg?w=2560&h=1440&crop=1);">
+      <h1>Watch Movie</h1>
+  </div>
 
-<ul>
-  <% @lists.each do |list| %>
-  <li><%= link_to list.name, list_path(list) %></li>
-  <% end %>
-</ul>
+<div class="btn-container">
+   <button class="btn btn-gradient">
+    <%= link_to "Create a list 🎬", new_list_path %>
+  </button>
+</div>
 
-<div>
-  <%= link_to "Create a list", new_list_path %>
+
+<div class="container">
+  <div class="cards">
+      <% @lists.each do |list| %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%=list.movies.empty? ? "https://t3.ftcdn.net/jpg/01/25/57/92/360_F_125579217_HL9SYmJR8KzVZ5Jfddr4BPyD3QxSSHtZ.jpg" : "https://image.tmdb.org/t/p/w500#{list.movies.first.poster_url}" %>)">
+        <%= link_to list.name, list_path(list) %>
+        </div>
+      <% end %>
+  </div>
 </div>

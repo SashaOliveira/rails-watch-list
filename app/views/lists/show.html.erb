@@ -1,9 +1,18 @@
-<h1><%= @list.name %></h1>
 
-<%= link_to "Back to lists 👣", lists_path, class: "btn btn-primary" %>
+<div class="btn-container" >
+<%= link_to "Back to lists 👣", lists_path, class: "btn btn-primary btn-gradient" %>
+<%= link_to "Create a new bookmark 📺", new_list_bookmark_path(@list), class: "btn btn-primary btn-gradient" %>
+</div>
 
-<%= simple_form_for [@list, @bookmark] do |f| %>
-  <%= f.input :comment %>
-  <%= f.association :movie%>
-  <%= f.button :submit %>
+<div class="card-container">
+<% @bookmarks.each do |bookmark| %>
+<div class="card" style="width: 18rem;">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJdW3nTn5RpvLhDcAqsS8LKbyP65sAyJooyw&s" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Comment 👩🏻‍💻</h5>
+    <p class="card-text"><%= bookmark.comment %></p>
+    <%= link_to "Delete 🗑️", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure"} %>
+  </div>
+</div>
 <% end %>
+</div>
